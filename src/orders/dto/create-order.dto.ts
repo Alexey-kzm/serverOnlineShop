@@ -12,7 +12,7 @@ export class CreateOrderDto {
 
 class ProductDto{
   @IsNumber()
-  id:number;
+  productId:number;
   @IsNumber()
   count:number;
 }

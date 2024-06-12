@@ -8,18 +8,17 @@ import { GetAllServicesWithinDayDto } from "./dto/get-all-services-within-day.dt
 
 @Controller("additional-services")
 export class AdditionalServicesController {
-  constructor(private readonly additionalServicesService: AdditionalServicesService) {
-  }
+  constructor(private readonly additionalServicesService: AdditionalServicesService) {}
 
   @UsePipes(new ValidationPipe())
   @Auth()
   @Post("create")
   async createNew(@CurrentUser("id") id: number, @Body() dto: AddAdditionalServiceDto) {
-    await this.additionalServicesService.addAdditionalService(id, dto);
+    return this.additionalServicesService.addAdditionalService(id, dto);
   }
 
-  @Get("within-day")
+  @Post("within-day")
   async getWithinDay(@Body() dto: GetAllServicesWithinDayDto) {
-    await this.additionalServicesService.getAllServicesWithinDay(dto);
+    return this.additionalServicesService.getAllServicesWithinDay(dto);
   }
 }

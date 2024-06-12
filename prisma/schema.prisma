@@ -24,6 +24,7 @@ model User{
   lastname String
   password String
   orders Order[]
+  services AdditionalService[]
 
   @@map("user")
 }
@@ -53,4 +54,23 @@ model OrderProduct{
   orderId Int @map("order_id")
 
   @@map("orderproduct")
+}
+
+model AdditionalService{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  type ServiceType @default(AMBULANCE)
+  time DateTime
+
+  user User @relation(fields: [userId], references: [id])
+  userId Int @map("user_id")
+
+  @@map("additionalservice")
+}
+
+enum ServiceType{
+  AMBULANCE
+  ADOPT
 }

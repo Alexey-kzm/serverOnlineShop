@@ -9,7 +9,8 @@ export class OrdersService {
   }
 
   async createOrder(userId: number, createOrderDto: CreateOrderDto) {
-    const payment = await this.paymentService.makePayment({ amount: createOrderDto.orderCost });
+    const allOrders = await this.getAllOrders(userId);
+    const payment = await this.paymentService.makePayment({ amount: createOrderDto.orderCost, description: `Заказ №${allOrders.length}`});
     const order = await this.prisma.order.create({
       data: {
         paymentId: payment.id,
@@ -25,7 +26,7 @@ export class OrdersService {
       await this.prisma.orderProduct.create({
         data: {
           count: product.count,
-          productId: product.id,
+          productId: product.productId,
           mainorder: {
             connect: {
               id: order.id
