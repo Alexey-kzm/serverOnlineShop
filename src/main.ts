@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const prismaService = app.get(PrismaService);
   app.enableCors({
-    origin: 'http://localhost:3000',
+    origin: 'https://frontendonlineshop.onrender.com,
     credentials: true,
   });
   await app.listen(4200);
