@@ -15,7 +15,7 @@ export class PaymentService {
       },
       "confirmation": {
         "type": "redirect",
-        "return_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "return_url": "https://frontendonlineshop.onrender.com/"
       },
       "description": makePayment.description,
     }, {
